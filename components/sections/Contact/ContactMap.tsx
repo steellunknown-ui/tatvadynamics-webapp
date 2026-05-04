@@ -25,7 +25,7 @@ export function ContactMap() {
             <Button 
               as="link"
               href="https://maps.google.com"
-              target="_blank"
+              external
               variant="secondary"
               className="flex items-center gap-2 w-fit"
             >

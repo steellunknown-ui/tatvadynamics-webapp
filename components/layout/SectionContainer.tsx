@@ -3,11 +3,12 @@ import { cn } from '@/utils/cn'
 interface SectionContainerProps {
   children: React.ReactNode
   className?: string
-  background?: 'base' | 'surface' | 'section-alt' | 'none'
+  background?: 'base' | 'surface' | 'section-alt' | 'void' | 'none'
   /** Vertical padding variant */
   spacing?: 'default' | 'compact' | 'none'
   /** HTML id for anchor navigation */
   id?: string
+  /** HTML tag */
   as?: 'section' | 'div' | 'article'
 }
 
@@ -20,6 +21,8 @@ interface SectionContainerProps {
  * - responsive horizontal padding
  * - consistent vertical section spacing
  * - background variants from design system
+ *
+ * (Wait, fixing the map below too)
  */
 export function SectionContainer({
   children,
@@ -33,6 +36,7 @@ export function SectionContainer({
     base:          'bg-bg-base',
     surface:       'bg-bg-surface',
     'section-alt': 'bg-bg-section-alt',
+    void:          'bg-bg-void',
     none:          '',
   }
 

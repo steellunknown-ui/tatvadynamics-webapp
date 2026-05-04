@@ -3,11 +3,11 @@ import { SectionLabel } from './SectionLabel'
 
 interface SectionHeadingProps {
   /** The H2 headline text */
-  heading: string
+  heading: React.ReactNode
   /** Optional eyebrow label above the heading */
   label?: string
   /** Optional supporting paragraph below the heading */
-  subtitle?: string
+  subtitle?: React.ReactNode
   /** Show the vertical accent line to the left of the heading */
   accentLine?: boolean
   /** Text alignment */

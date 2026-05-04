@@ -17,6 +17,7 @@ interface ButtonBaseProps {
 interface ButtonAsButton extends ButtonBaseProps {
   as?: 'button'
   type?: 'button' | 'submit' | 'reset'
+  form?: string
   onClick?: () => void
   href?: never
 }
@@ -26,6 +27,7 @@ interface ButtonAsLink extends ButtonBaseProps {
   as: 'link'
   href: string
   external?: boolean
+  download?: boolean
   type?: never
   onClick?: () => void
 }
@@ -124,12 +126,13 @@ export function Button(props: ButtonProps) {
   )
 
   if (props.as === 'link') {
-    const { href, external } = props
+    const { href, external, download } = props
     return (
       <Link
         href={href}
         target={external ? '_blank' : undefined}
         rel={external ? 'noopener noreferrer' : undefined}
+        download={download}
         className={cn(baseClasses, className)}
         onClick={props.onClick}
       >
@@ -141,6 +144,7 @@ export function Button(props: ButtonProps) {
   return (
     <button
       type={props.type ?? 'button'}
+      form={(props as any).form}
       onClick={props.onClick}
       disabled={isDisabled}
       className={cn(baseClasses, className)}

@@ -13,9 +13,9 @@ export function DefenseProducts() {
     <SectionContainer background="void" spacing="default" id="defense-products">
       <div className="mb-16">
         <SectionHeading
-          eyebrow="Tactical Portfolio"
+          label="Tactical Portfolio"
           heading="Mission-Critical Hardware"
-          description="Specialized manufacturing for India's defense sector, ranging from precision sensors to armored vehicle control systems."
+          subtitle="Specialized manufacturing for India's defense sector, ranging from precision sensors to armored vehicle control systems."
           align="left"
         />
       </div>

@@ -23,7 +23,7 @@ export function ContactPDF() {
             <Button 
               as="link"
               href="/docs/MEPL-Company-Profile.pdf"
-              target="_blank"
+              external
               download
               variant="secondary"
               className="flex items-center gap-3 px-8 py-4 h-auto"

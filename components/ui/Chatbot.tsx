@@ -147,7 +147,14 @@ export function Chatbot() {
             {/* Messages Area */}
             <div 
               ref={scrollRef}
-              className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth bg-bg-void/30"
+              className="
+                flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth bg-bg-void/30
+                overscroll-contain
+                [&::-webkit-scrollbar]:w-1
+                [&::-webkit-scrollbar-track]:bg-transparent
+                [&::-webkit-scrollbar-thumb]:bg-border-hairline
+                hover:[&::-webkit-scrollbar-thumb]:bg-accent-primary/40
+              "
             >
               {messages.map((msg) => (
                 <div

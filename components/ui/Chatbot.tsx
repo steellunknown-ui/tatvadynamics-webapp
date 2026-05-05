@@ -84,15 +84,12 @@ export function Chatbot() {
     } catch (error: any) {
       console.error('Chat Error:', error)
       
-      let errorMessage = "I'm having a bit of trouble connecting to my central brain. Please check the API key in .env.local or Vercel Settings!"
-      
-      if (error.message.includes('API Key not configured')) {
-        errorMessage = "Attention: OPENROUTER_API_KEY is missing from your environment variables."
-      }
+      // Show the actual error message from the server to help us debug
+      const errorMessage = error.message || "An unknown connection error occurred."
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: errorMessage,
+        text: `[System Error]: ${errorMessage}`,
         sender: 'bot',
         timestamp: new Date(),
       }

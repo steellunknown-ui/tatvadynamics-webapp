@@ -51,7 +51,7 @@ export async function POST(req: Request) {
         "X-Title": "Tatva Dynamics AI",
       },
       body: JSON.stringify({
-        "model": "google/gemma-4-31b-it:free",
+        "model": "google/gemma-2-9b-it:free",
         "messages": [
           { "role": "system", "content": systemPrompt },
           ...messages

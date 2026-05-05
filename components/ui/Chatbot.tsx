@@ -83,13 +83,20 @@ export function Chatbot() {
       setMessages((prev) => [...prev, botMessage])
     } catch (error: any) {
       console.error('Chat Error:', error)
-      const errorMessage: Message = {
+      
+      let errorMessage = "I'm having a bit of trouble connecting to my central brain. Please check the API key in .env.local or Vercel Settings!"
+      
+      if (error.message.includes('API Key not configured')) {
+        errorMessage = "Attention: OPENROUTER_API_KEY is missing from your environment variables."
+      }
+
+      const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I'm having a bit of trouble connecting to my central brain. Please check the API key in .env.local or contact our office!",
+        text: errorMessage,
         sender: 'bot',
         timestamp: new Date(),
       }
-      setMessages((prev) => [...prev, errorMessage])
+      setMessages((prev) => [...prev, botMessage])
     } finally {
       setIsTyping(false)
     }

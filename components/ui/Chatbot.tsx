@@ -84,12 +84,9 @@ export function Chatbot() {
     } catch (error: any) {
       console.error('Chat Error:', error)
       
-      // Show the actual error message from the server to help us debug
-      const errorMessage = error.message || "An unknown connection error occurred."
-
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: `[System Error]: ${errorMessage}`,
+        text: "I'm having a bit of trouble connecting to my central brain. Please check your connection or contact our office for immediate assistance!",
         sender: 'bot',
         timestamp: new Date(),
       }

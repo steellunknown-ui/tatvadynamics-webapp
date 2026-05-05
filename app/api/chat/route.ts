@@ -40,16 +40,18 @@ export async function POST(req: Request) {
       6. Do NOT mention you are an AI model unless specifically asked. You represent Tatva Dynamics.
     `
 
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tatvadynamics-webapp.vercel.app'
+
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:3000",
+        "HTTP-Referer": siteUrl,
         "X-Title": "Tatva Dynamics AI",
       },
       body: JSON.stringify({
-        "model": "google/gemma-4-31b-it:free", // User specified instruction-tuned model
+        "model": "google/gemma-4-31b-it:free",
         "messages": [
           { "role": "system", "content": systemPrompt },
           ...messages
@@ -60,7 +62,11 @@ export async function POST(req: Request) {
     const data = await response.json()
     
     if (data.error) {
-      throw new Error(data.error.message || 'OpenRouter API Error')
+      console.error('OpenRouter Error:', data.error)
+      return NextResponse.json(
+        { error: `AI Provider Error: ${data.error.message || 'Unknown error'}` },
+        { status: 500 }
+      )
     }
 
     const botReply = data.choices[0].message.content
@@ -70,7 +76,7 @@ export async function POST(req: Request) {
   } catch (error: any) {
     console.error('Chatbot API Error:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch AI response' },
+      { error: `Internal Server Error: ${error.message}` },
       { status: 500 }
     )
   }
